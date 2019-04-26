@@ -467,16 +467,15 @@
 			</build>
 		</profile>
 		<profile>
-			<!-- These plugins can't be part of the standard build -->
-			<id>ckeditor-extras</id>
+			<!-- These plugins are part of the standard build -->
+			<id>ckeditor-addons</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 				<property>
-					<name>ckeditor-extras</name>
+					<name>ckeditor-addons</name>
 				</property>
 			</activation>
 			<properties>
-				<ckeditor-a11y-extra-plugins>,a11ychecker</ckeditor-a11y-extra-plugins>
 			</properties>
 			<dependencies>
 				<dependency>
@@ -491,6 +490,38 @@
 					<version>${ckeditor.balloonpanel.version}</version>
 					<scope>runtime</scope>
 				</dependency>
+				<dependency>
+					<groupId>org.sakaiproject.webjars</groupId>
+					<artifactId>ckeditor-ckawesome</artifactId>
+					<version>${ckeditor.ckawesome.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.sakaiproject.webjars</groupId>
+					<artifactId>ckeditor-btgrid</artifactId>
+					<version>${ckeditor.btgrid.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.sakaiproject.webjars</groupId>
+					<artifactId>ckeditor-pasteFromGoogleDoc</artifactId>
+					<version>${ckeditor.pasteFromGoogleDoc.version}</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<!-- These plugins can't be part of the standard build -->
+			<id>ckeditor-extras</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>ckeditor-extras</name>
+				</property>
+			</activation>
+			<properties>
+			</properties>
+			<dependencies>
 			</dependencies>
 		</profile>
 	</profiles>

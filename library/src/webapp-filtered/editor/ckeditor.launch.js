@@ -169,12 +169,12 @@ sakai.editor.editors.ckeditor.launch = function(targetId, config, w, h) {
             ['Link','Unlink','Anchor'],
             (sakai.editor.enableResourceSearch
                 ? ( sakai.editor.contentItemUrl
-                    ? ['ContentItem', 'AudioRecorder','ResourceSearch', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar']
-                    : ['AudioRecorder','ResourceSearch', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar']
+                    ? ['ContentItem', 'AudioRecorder','ResourceSearch', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar','ckawesome','btgrid']
+                    : ['AudioRecorder','ResourceSearch', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar','ckawesome','btgrid']
                   )
 		: ( sakai.editor.contentItemUrl
-                    ? ['ContentItem', 'AudioRecorder', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar']
-                    : ['AudioRecorder', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar']
+                    ? ['ContentItem', 'AudioRecorder', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar','ckawesome','btgrid']
+                    : ['AudioRecorder', 'Image','Movie','Table','HorizontalRule','Smiley','SpecialChar','ckawesome','btgrid']
                   )
             ),
             '/',
@@ -262,6 +262,9 @@ sakai.editor.editors.ckeditor.launch = function(targetId, config, w, h) {
         // Accessibility checker has a dependency on balloonpanel
         CKEDITOR.plugins.addExternal('balloonpanel',webJars+'balloonpanel/${ckeditor.balloonpanel.version}/', 'plugin.js');
         CKEDITOR.plugins.addExternal('a11ychecker',webJars+'a11ychecker/${ckeditor.a11ychecker.version}/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('ckawesome',webJars+'ckawesome/${ckeditor.ckawesome.version}/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('btgrid',webJars+'btgrid/${ckeditor.btgrid.version}/', 'plugin.js');
+        CKEDITOR.plugins.addExternal('pasteFromGoogleDoc',webJars+'pasteFromGoogleDoc/${ckeditor.pasteFromGoogleDoc.version}/', 'plugin.js');
         /*
            To enable after the deadline uncomment these two lines and add atd-ckeditor to toolbar
            and to extraPlugins. This also needs extra stylesheets.
@@ -278,7 +281,10 @@ sakai.editor.editors.ckeditor.launch = function(targetId, config, w, h) {
         //ckconfig.extraPlugins+="atd-ckeditor,";
         //ckconfig.contentsCss = [basePath+'atd-ckeditor/atd.css'];
 
-        ckconfig.extraPlugins+="${ckeditor-extra-plugins}${ckeditor-a11y-extra-plugins}";
+        if (typeof CKEDITOR_ADDONS === "undefined" || CKEDITOR_ADDONS === null) {
+            CKEDITOR_ADDONS = "";
+        }
+        ckconfig.extraPlugins+="${ckeditor-extra-plugins}" + CKEDITOR_ADDONS;
 
         // Load FontAwesome CSS in case a user wants to manually add FA markup
         ckconfig.contentsCss = [webJars+'fontawesome/4.7.0/css/font-awesome.min.css'];

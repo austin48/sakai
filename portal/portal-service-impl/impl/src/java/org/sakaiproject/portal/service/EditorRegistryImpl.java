@@ -27,6 +27,7 @@ import java.util.List;
 import org.sakaiproject.portal.api.BaseEditor;
 import org.sakaiproject.portal.api.Editor;
 import org.sakaiproject.portal.api.EditorRegistry;
+import org.sakaiproject.component.cover.ServerConfigurationService;
 
 public class EditorRegistryImpl implements EditorRegistry {
 	
@@ -34,10 +35,14 @@ public class EditorRegistryImpl implements EditorRegistry {
 	
 	public void init() {
 		//TODO: pull this out to somewhere appropriate
+        String ckeditorAddOns = ServerConfigurationService.getString("ckeditor.addons","");
+        if (ckeditorAddOns != "" && ckeditorAddOns != null) {
+             ckeditorAddOns = "," + ckeditorAddOns;
+        }
 		register("textarea", "textarea", "/library/editor/textarea/textarea.js", "/library/editor/textarea.launch.js", "");
 		register("fckeditor", "FCKeditor", "/library/editor/FCKeditor/fckeditor.js", "/library/editor/fckeditor.launch.js", "");
 		register("ckeditor", "CKEditor", "/library/webjars/ckeditor/4.11.3/full/ckeditor.js", "/library/editor/ckeditor.launch.js",
-				"var CKEDITOR_BASEPATH='/library/webjars/ckeditor/4.11.3/full/';\n");
+				"\nvar CKEDITOR_BASEPATH='/library/webjars/ckeditor/4.11.3/full/';\nvar CKEDITOR_ADDONS='" + ckeditorAddOns + "';\n");
 	}
 	
 	public void destroy() {

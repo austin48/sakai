@@ -27,6 +27,11 @@
                 </property>
             </activation>
             <modules>
+                <module>ckeditor-balloonpanel</module>
+                <module>ckeditor-a11ychecker</module>
+                <module>ckeditor-ckawesome</module>
+                <module>ckeditor-btgrid</module>
+                <module>ckeditor-pasteFromGoogleDoc</module>
             </modules>
         </profile>
         <profile>
@@ -39,8 +44,6 @@
                 </property>
             </activation>
             <modules>
-                <module>ckeditor-balloonpanel</module>
-                <module>ckeditor-a11ychecker</module>
             </modules>
         </profile>
     </profiles>
